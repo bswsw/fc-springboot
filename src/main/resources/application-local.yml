@@ -1,1 +1,20 @@
+debug: true
 logging.level.com.baegood.fcspringboot: debug
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/scott
+    username: springuser
+    password: 1234
+    initialization-mode: always # sql 파일을 자동으로 실행시켜준다.
+    hikari:
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    # mysql jdbc driver 의존성이 있으면 자동으로 설정해준다. 그러나 mysql inno db 를 사용하기 위해선 설정해줘야한다.
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

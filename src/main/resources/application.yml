@@ -1,8 +1,9 @@
 spring.profiles.active: local
 
-debug: true
 
 spring:
   output:
     ansi:
       enabled: always
+  thymeleaf:
+    prefix: classpath:/thymeleaf/
