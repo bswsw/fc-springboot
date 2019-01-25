@@ -25,4 +25,8 @@ public class Board {
         this.createdDate = LocalDateTime.now();
         this.readCount = 0;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

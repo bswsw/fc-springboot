@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Thymeleaf List</h1>
+<hr/>
+
+<h3 th:text="${count}"></h3>
+<table>
+    <tr th:each="board, elementStat: ${list}">
+        <td th:text="${board.name}"></td>
+        <td th:text="${board.title}"></td>
+        <td th:text="${board.content}"></td>
+        <td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${board.readCount}"></td>
+    </tr>
+</table>
+
+<hr/>
+
+<div th:if="${#lists.size(list) > 2}">
+    list.size() > 2
+</div>
+
+<div th:if="${#lists.size(list) < 4}">
+    list.size() < 4
+</div>
+
+<hr/>
+
+<div th:switch="${count}">
+    <p th:case="1">count is 1</p>
+    <p th:case="2">count is 2</p>
+    <p th:case="3">count is 3</p>
+</div>
+
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  var testStr = /*[[${test}]]*/ '-- test --';
+  /*]]>*/
+  alert(testStr);
+</script>
+
+</body>
+</html>

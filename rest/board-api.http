@@ -1,0 +1,9 @@
+### get boards
+GET http://localhost:8080/api/boards
+Accept: application/xml
+
+### get a board
+GET http://localhost:8080/api/boards/1
+#Accept: application/json
+
+###
