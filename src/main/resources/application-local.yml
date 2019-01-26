@@ -18,3 +18,7 @@ spring:
         format_sql: true
     # mysql jdbc driver 의존성이 있으면 자동으로 설정해준다. 그러나 mysql inno db 를 사용하기 위해선 설정해줘야한다.
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+logging:
+  level:
+    org.hibernate.type.descriptor.sql: TRACE

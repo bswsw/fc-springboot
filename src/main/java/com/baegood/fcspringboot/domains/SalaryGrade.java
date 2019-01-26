@@ -9,18 +9,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
-@Entity
+@Entity(name = "salarygrade")
 @Getter
 @Setter
-public class Department {
+public class SalaryGrade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "deptno")
-    private Long deptNo;
+    private Long grade;
 
-    private String name;
+    @Column(name = "losal")
+    private Integer lowSalary;
 
-    private String location;
+    @Column(name = "hisal")
+    private Integer highSalary;
 }
