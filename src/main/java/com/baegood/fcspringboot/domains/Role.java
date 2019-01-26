@@ -9,18 +9,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 @Getter
 @Setter
-public class Department {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "deptno")
-    private Long deptNo;
+    @Column(name = "role_id")
+    private Long id;
 
-    private String name;
-
-    private String location;
+    @Column(length = 100)
+    private String description;
 }

@@ -1,6 +1,7 @@
 package com.baegood.fcspringboot.domains;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Employee {
 
     @Id
@@ -19,15 +21,17 @@ public class Employee {
     @Column(name = "empno")
     private Long empNo;
 
+    @Column(length = 10)
     private String name;
 
+    @Column(length = 9)
     private String job;
 
     @ManyToOne
     @JoinColumn(name = "boss")
     private Employee boss;
 
-    @Column(name = "hiredate")
+    @Column(name = "hiredate", length = 12)
     private String hireDate;
 
     private Long salary;
@@ -35,6 +39,6 @@ public class Employee {
     private Long comm;
 
     @ManyToOne
-    @JoinColumn(name = "dept_no")
+    @JoinColumn(name = "deptno")
     private Department department;
 }

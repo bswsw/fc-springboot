@@ -52,3 +52,68 @@
 
 ### Thymeleaf 템플릿 디렉토리 변경 예시 (`application.properties`)
 - spring.thymeleaf.prefix=classpath:/thymeleaf/
+
+
+
+## 4일차
+
+### JDBC
+
+
+#### SQL Mapper
+- SQL 중심의 쿼리 개발
+- Spring JDBC, MyBatis
+
+
+#### ORM
+- 객체 중심의 데이터베이스 개발
+- JPA(Java 표준), Spring Data JPA 
+
+
+#### Spring Data JPA
+- 테이블과 매핑하는 객체를 생성 (`@Entity`)
+- `@Entity` 클래스에 해당하는 테이블을 자동으로 생성할 수 있음
+- 1:1, 1:N, N:M 관계에 대해 고민이 필요
+- 비즈니스 로직에 대한 고민이 필요
+
+##### 개발 순서
+1. `Entity` 클래스 작성 
+2. `Repository` 작성하여 JPQL, QueryDSL 등을 사용하여 조회를 어떻게 할지 고민
+3. `Repository` 테스트 작성. (SQL을 잘 확인하여야 한다.)
+
+##### 복합키 사용하기
+- 복합키 정보를 가지고 있는데 `@Embeddable` 객체를 만들어주고 Entity 에서 `@EmbeddableId` 로 키를 지정해준다.
+
+```java
+@Embeddable
+@Data // lombok
+public class ModelId extends Serializable {
+    private Long aId;
+    private Long bId;
+    private Long cId;
+}  
+
+@Entity
+public class Model {
+    @EmbeddedId
+    private ModelId modelId;
+}
+```
+
+##### JPQL
+- N + 1 쿼리 해결하기 (fetch join)
+```java
+@Query("SELECT e FROM Employee e INNER JOIN fetch e.department")
+``` 
+
+- 특정 컬럼만 SELECT 하고 싶을때
+```java
+@Query("SELECT new Dto(e.name, e.salary) from Employee e")
+```
+
+
+### Test
+
+- `@RunWith(SpringRunner.class)` : 스프링 설정을 읽어서 빈을 등록해준다.
+- `@DataJpaTest` : JPA 관련 bean만 등록한다. (기본적으로 Embedded Database를 사용하여 테스트를 진행.)
+- `@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)` : Embedded DB 를 사용하지 않는다.

@@ -5,5 +5,5 @@ spring:
   output:
     ansi:
       enabled: always
-  thymeleaf:
-    prefix: classpath:/thymeleaf/
+#  thymeleaf:
+#    prefix: classpath:/thymeleaf/ # thymeleaf 템플릿 경로 재정의

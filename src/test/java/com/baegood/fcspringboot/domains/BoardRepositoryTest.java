@@ -1,5 +1,6 @@
 package com.baegood.fcspringboot.domains;
 
+import com.baegood.fcspringboot.repositories.BoardRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
